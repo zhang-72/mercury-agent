@@ -1671,7 +1671,7 @@ function RunningStepRow({ step }: { step: ToolStep }) {
       <Text color={tone} bold>{step.label}</Text>
       <Text dimColor> · {timeStr}</Text>
       {elapsed >= 30 && elapsed < 90 && <Text color="yellow" dimColor> · still working</Text>}
-      {elapsed >= 90 && <Text color="red" dimColor> · long op (Ctrl+C cancels)</Text>}
+      {elapsed >= 90 && <Text color="red" dimColor> · long op (Ctrl+C cancels, /bg current to background)</Text>}
     </Box>
   );
 }
@@ -1768,12 +1768,12 @@ function ThinkingIndicator({ agentName, steps, mode }: { agentName: string; step
       <Box>
         <Text color={actionTone === 'white' ? 'cyan' : actionTone}>{spinner}</Text>
         <Text> </Text>
-        <Text color="cyan" bold>{totalSteps > 0 ? agentName : 'Processing'}</Text>
+        <Text color="cyan" bold>{totalSteps > 0 ? 'Processing' : 'Processing'}</Text>
         <Text dimColor>{totalSteps > 0 ? ` · step ${totalSteps} · ${timeStr}` : ` · ${timeStr}`}</Text>
       </Box>
       <Box marginLeft={4}>
         <Text color={actionTone} bold>{currentAction}</Text>
-        {displayElapsed >= 90 && <Text color="red" dimColor> · long op (Ctrl+C cancels)</Text>}
+        {displayElapsed >= 90 && <Text color="red" dimColor> · long op (Ctrl+C cancels, /bg current to background)</Text>}
       </Box>
       {recentDone.length > 0 && (
         <Box flexDirection="column" marginLeft={4} marginTop={0}>
